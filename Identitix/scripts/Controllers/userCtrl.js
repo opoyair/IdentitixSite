@@ -128,13 +128,12 @@
             //invoke when get images from facebook
             $scope.$on('event:showGallery', function (event, data) {
                 $scope.loading = false;
-                THAT.alertData = alertSrv.showAlert(alertSrv.alerts[0]);
+                THAT.alertData = alertSrv.showAlert(alertSrv.alerts[1]);
                 if (Object.keys(gallery).length === 0 )
                     gallery = data;
                 else 
                     gallery = [].concat(gallery, data);               
-                openGallery(gallery);
-                //openGallery(data);
+                openGallery(gallery);                
             })
             
             $scope.$on('event:addLink', function (event,data) {
@@ -221,8 +220,8 @@
             $scope.start = 0;
 
             THAT.refresh = function () {
-                $scope.start += 9;
-                var end = $scope.start + 9;
+                $scope.start += 1;
+                var end = $scope.start + 1;
 
                 if ($scope.start >= $scope.userData.photos.length) {
                     $scope.start = 0;

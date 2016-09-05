@@ -39,18 +39,22 @@
             
             <div class="gallery" ng-if="openGallery">
                 <h3>Hi {{ userName }},</h3>
-                <h3 style="left:80px">Are these photos of you?</h3>
+                <h3 style="left:80px">is this photo of you?</h3>
                 <div class="spinner" ng-show="loading">
                     <img src="imgs/loader7.gif"  />
                 </div>
-                <div class="scroller">
+                <div>
                   <!--  <div ng-model="start" ng-repeat="img in userData.photos.slice(start,start + 9)"> -->
-                    <div ng-model="start" ng-repeat="img in userData.photos"> 
-                        <img ng-src="{{img.url}}" ng-class="img.selected == true ? 'pictureSelected':'picture'" ng-click="user.imgSelected($event,start + $index)">
+                    <div ng-model="start" ng-repeat="img in userData.photos.slice(start,start + 1)"> 
+                       <!-- <img ng-src="{{img.url}}" ng-class="img.selected == true ? 'pictureSelected':'picture'" ng-click="user.imgSelected($event,start + $index)"> -->
+                        <img ng-src="{{img.url}}" ng-class="img.selected == true ? 'pictureSelected':'picture'" />
                     </div>
                 </div>               
                 <img src="imgs/refresh.png" class="refresh" ng-click="user.refresh()" />
-                <button class="btn" ng-click="user.send()">Yes</button><span class="counter" ng-if="imgsSelected.length > 0">{{ imgsSelected.length }}</span>
+                <button class="btn" ng-click="user.send()">Yes</button>
+                <!--
+                <span class="counter" ng-if="imgsSelected.length > 0">{{ imgsSelected.length }}</span>
+                 -->
             </div>  
 
             <div class="status">

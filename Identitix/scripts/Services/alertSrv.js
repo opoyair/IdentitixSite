@@ -4,7 +4,8 @@ identitixApp.service('alertSrv', function ($rootScope, $http,$timeout) {
     var THAT = this;
 
     this.alerts = [
-        'please select 5 - 9 images'
+        'please select 5 - 9 images',
+        'please valid your image'
     ];
 
     var data = {
