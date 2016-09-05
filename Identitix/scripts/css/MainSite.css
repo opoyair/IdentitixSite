@@ -1,0 +1,31 @@
+﻿#captureFace {
+    top: 61%;
+    left: 41%;
+}
+
+#retakeFace {
+    top: 61%;
+    left: 33%;
+}
+
+#sendFace {
+    top: 61%;
+    left: 60%;
+}
+
+.cameraButtonsStyle {
+    position: relative;
+    font-size: -webkit-xxx-large;
+    cursor: pointer;
+}
+
+.cameraLayout {
+    position: relative;
+    top: 10%;
+    bottom: 40%;
+    right: 32.5%;
+    left: 32.5%;
+    width: 34%;
+    height: 50%;
+}
+

@@ -1,0 +1,81 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Identitix</title>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0,user-scalable=no" >
+   <!-- <link rel="stylesheet" type="text/css" href="scripts/css/MainSite.css">-->
+    <link rel="stylesheet" href="scripts/css/style.css" />
+    <script src="scripts/jquery/jquery-3.0.0.js"></script>
+   <!-- <script src="scripts/cameraHandler.js"></script> -->
+    <script src="scripts/angular/angular.js"></script>
+    <script src="scripts/angular/angular-route.min.js"></script>
+    <script src="scripts/IdentitixApp.js"></script>
+    <script src="scripts/Services/utilSrv.js"></script>
+    <script src="scripts/Services/alertSrv.js"></script>
+    <script src="scripts/Services/userSrv.js"></script>
+    <script src="scripts/Controllers/userCtrl.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Noto+Sans" rel="stylesheet">
+
+</head>
+<body ng-app="identitixApp">
+ 
+    <div  class="mobile">
+        <div id="identitx" class="main" ng-controller="userCtrl as user">
+            <img class="logo-copy" src="imgs/logo-02.png" />
+            <p class="PAYMENT-WITH-A-SELFI">PAYMENT WITH A SELFIE</p>
+            <div ng-if="user.alertData.isAlertShow" class="identitx-alert" ng-cloak >
+                <div class="body">{{ user.alertData.body }}</div>
+            </div>
+
+            <div ng-hide="isConnected">
+                <a href="#" ng-click="user.fb_login()">
+                    <img src="imgs/face-login-b-t-n.png" alt="" border="0" class="facebookButton">
+                </a>
+
+            </div>
+            <p class="How-does-IdenTitix-w" ng-if="!isConnected">How does Identitix work?</p>
+            
+            <div class="gallery" ng-if="openGallery">
+                <h3>Hi {{ userName }},</h3>
+                <h3 style="left:80px">Are these photos of you?</h3>
+                <div class="spinner" ng-show="loading">
+                    <img src="imgs/loader7.gif"  />
+                </div>
+                <div ng-model="start" ng-repeat="img in userData.photos.slice(start,start + 9)">
+                    <img ng-src="{{img.url}}" ng-class="img.selected == true ? 'pictureSelected':'picture'" ng-click="user.imgSelected($event,start + $index)">
+                </div>                
+                <img src="imgs/refresh.png" class="refresh" ng-click="user.refresh()" />
+                <button class="btn" ng-click="user.send()">Yes</button><span class="counter" ng-if="imgsSelected.length > 0">{{ imgsSelected.length }}</span>
+            </div>
+
+            <div class="status">
+                <div ng-if="userExist">                    
+                    <h1>Hey, you already signed up to Identitix </h1>
+                    <p ng-if="orderID">your order has been received {{ orderID }} saved</p>
+                    <button class="btn" ng-click="user.close()">Close</button>
+                </div>
+                <div ng-if="success">
+                    <img src="/imgs/oval.png" />
+                    <img src="/imgs/success.png" id="logoStatus" />
+                    <h1>A pin number will be sent to</h1>
+                    <h1>your  email shortly</h1>
+                    <p>Once you have the pin code,</p>
+                    <p ng-if="orderID" >your order is {{ orderID }} </p>
+                    <button class="btn" ng-click="user.close()">Close</button>
+                    
+                </div>
+                <div ng-if="error">
+                    <img src="/imgs/oval.png" />
+                    <img src="/imgs/error.png" id="logoStatus" />
+                    <h1>An Error Occurred</h1>
+                    <button class="btn" ng-click="user.tryAgain()">TRY AGAIN</button>
+                </div>
+               
+            </div>
+
+
+        </div>
+    </div>
+</body>
+</html>
