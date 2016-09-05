@@ -44,7 +44,7 @@
                     <img src="imgs/loader7.gif"  />
                 </div>
                 <div class="scroller">
-                    <div ng-model="start" ng-repeat="img in userData.photos.slice(start,start + 9)"> 
+                  <!--  <div ng-model="start" ng-repeat="img in userData.photos.slice(start,start + 9)"> -->
                     <div ng-model="start" ng-repeat="img in userData.photos"> 
                         <img ng-src="{{img.url}}" ng-class="img.selected == true ? 'pictureSelected':'picture'" ng-click="user.imgSelected($event,start + $index)">
                     </div>
